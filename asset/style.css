@@ -1,0 +1,153 @@
+body {
+    background-color: #e1e1e1;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px 20px 0 20px;
+}
+
+.content {
+    width: 70%;
+    margin: 0 auto;
+    background-color: #a19d9d73;
+    padding: 40px 40px 100px;
+    border-bottom-left-radius: 40%;
+    border-bottom-right-radius: 40%;
+    box-shadow: 1px 1px 15px gray;
+}
+
+.input-form {
+    width: 100%;
+    display: flex;
+}
+
+.input-text {
+    width: 79%;
+    height: 30px;
+    background: #ffffff;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    box-shadow: 3px 3px 3px #808080;
+    border-radius: 10px;
+    margin-right: 1%;
+}
+
+button {
+    width: 20%;
+    border: none;
+    box-shadow: 5px 5px 5px #9f9f9f;
+    font-size: 20px;
+    color: #06441ca6;
+    border-radius: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    box-shadow: none;
+    background-color: #9370db;
+    color: #ffffff;
+}
+
+.error_msg {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+.error-alert {
+    width: 50%;
+    margin: -5px auto -10px;
+}
+
+.error-box {
+    padding: 5px 0;
+    color: #ffffff;
+    text-align: center;
+    visibility: hidden;
+    letter-spacing: 0.6px;
+    font-weight: 100;
+    text-transform: uppercase;
+
+    animation-name: stretch;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-fill-mode: none;
+    animation-play-state: running;
+}
+
+@keyframes stretch {
+    0% {
+        transform: scale(.3);
+        background-color: rgb(255, 98, 19);
+        border-radius: 100%;
+    }
+    50% {
+        background-color: rgb(255, 66, 0);
+    }
+    100% {
+        transform: scale(1.5);
+        background-color: #ff0000;
+    }
+}
+
+.show_alert {
+    visibility: visible;
+}
+
+
+/*--------------------------------------*/
+
+.all-list {
+    text-align: center;
+    color: #008000b5;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #464b5e;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 0 10px #454444;
+}
+
+li {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin-bottom: 3px;
+    text-align: left;
+    border-bottom: .1rem solid #5c627b;
+    color: #a5afd7;
+}
+
+li:hover {
+    background-color: #4b5da24f;
+}
+
+.material-icons {
+    vertical-align: middle;
+    float: right;
+    margin-left: 5px;
+    transition: all 0.2s;
+}
+
+
+.delete-icon:hover {
+    cursor: pointer;
+    color: rgba(255, 0, 0, 0.73);
+}
+.edit-icon:hover {
+    cursor: pointer;
+    color: rgba(7, 255, 5, 0.64);
+}
