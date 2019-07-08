@@ -16,8 +16,7 @@ body {
     width: 70%;
     margin: 0 auto 45px;
     padding: 40px 40px 100px;
-    border-bottom-left-radius: 10%;
-    border-bottom-right-radius: 10%;
+    border-radius: 10px;
     -webkit-box-shadow: 0 0 10px #808080;
     box-shadow: 0 0 10px #808080;
 }
