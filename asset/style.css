@@ -1,3 +1,6 @@
+* {
+    font-family: Roboto, Arial,sans-serif;
+}
 body {
     background-color: #333745;
     margin: 0;
@@ -155,7 +158,6 @@ ul {
     padding: 0;
     width: 90%;
     margin: 0 auto;
-
 }
 
 li {
@@ -185,7 +187,6 @@ li:hover {
     -o-transition: all 0.2s;
     transition: all 0.2s;
 }
-
 
 .delete-icon:hover {
     cursor: pointer;
@@ -282,7 +283,7 @@ li:hover {
 }
 
 .modal {
-    position: absolute;
+    position: fixed;
     top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
@@ -328,4 +329,172 @@ li:hover {
     font-size: 20px;
     font-weight: 100;
     text-transform: capitalize;
+}
+
+.delete-all-box,
+.delete-box,
+.edit-form {
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: gray;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 5px gray;
+    box-shadow: 3px 3px 5px gray;
+    visibility: hidden;
+}
+
+.edit-form {
+    width: 50%;
+    height: 190px;
+}
+
+.edit-box {
+    width: 100%;
+}
+
+.edit_input {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    padding: 10px 20px;
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 1px 1px #00000070;
+    box-shadow: 1px 1px 1px #00000070;
+}
+
+.edit_header {
+    margin: 20px auto 15px;
+    text-align: center;
+    color: #90ee90;
+    text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.78);
+}
+
+.edit-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.edit-button button {
+    font-size: 25px;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+}
+
+.cancel {
+    color: white;
+    background-color: rgba(0, 128, 0, 0.62);
+    -webkit-box-shadow: 0 0 5px white;
+    box-shadow: 0 0 5px white;
+}
+
+.cancel:hover {
+    cursor: pointer;
+    background-color: #008000;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.cancel:active {
+    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, 0.62);
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.62);
+}
+
+.update {
+    color: white;
+    background-color: rgba(255, 0, 0, 0.74);
+    -webkit-box-shadow: 0 0 5px white;
+    box-shadow: 0 0 5px white;
+}
+
+.update:hover {
+    cursor: pointer;
+    background-color: #ff0000;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.update:active {
+    -webkit-box-shadow: 0 0 5px #008000;
+    box-shadow: 0 0 5px #008000;
+}
+
+.delete-box {
+    width: 50%;
+    height: 190px;
+}
+
+.delete-item {
+    text-align: center;
+    text-transform: capitalize;
+    color: #ffffff;
+}
+
+.delete-all-box {
+    width: 40%;
+    height: 150px;
+}
+
+.delete-all-box > h2 {
+    font-size: 40px;
+    color: red;
+    text-shadow: 0 0 5px white;
+}
+
+@media (max-width: 670px) {
+    .input-form {
+        display: block;
+    }
+
+    .input-text {
+        width: 90%;
+    }
+
+    .submit_button {
+        width: 90%;
+        margin: 0 auto;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .content-status {
+        display: block;
+    }
+
+    .content-status > button {
+        width: 100%;
+    }
+
+    .current-job {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    .all_options {
+        width: 100%;
+    }
+
+    span {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+    }
+
+    .delete-all-box {
+        width: 60%;
+        height: 300px;
+    }
 }

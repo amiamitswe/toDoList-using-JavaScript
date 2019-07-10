@@ -12,9 +12,7 @@ const on_Load_Body_Func = () => {
 
     if (json) {
         toDoList.toDo = [...JSON.parse(json)];
-
         console.log("data loaded...");
-
         load_Content_Of_To_Do_List();
     } else {
         console.log('No data exist...');
@@ -37,7 +35,6 @@ const onTypeText = () => {
 
 const saveUserInput = () => {
     let getInput = document.querySelector("#input-text").value.trim().toLowerCase();
-
     if (getInput !== "") {
 
         if (toDoList.toDo.indexOf(getInput) > -1) {
@@ -47,11 +44,8 @@ const saveUserInput = () => {
         toDoList.toDo.push(getInput);
         document.querySelector("#input-text").value = "";
 
-        let json = JSON.stringify(toDoList.toDo);
-        localStorage.setItem('index', json);
-
+        Json_setItem_func();
         console.log("New data recorded " + toDoList.toDo.length);
-
         load_Content_Of_To_Do_List();
 
     } else {
@@ -59,9 +53,18 @@ const saveUserInput = () => {
     }
 };
 
-// delete all document on click delete all button
+// delete all popup visible
 
 const deleteAllRecords = () => {
+    document.querySelector(".delete-all-box").style.visibility = "visible";
+    document.querySelector(".container").style.opacity = "0.3";
+    document.querySelector(".container").style.zIndex = "-1";
+};
+
+
+// delete all document on click delete all button
+
+const updateDeleteAll = () => {
     let json = '';
     localStorage.setItem('index', json);
     toDoList.toDo = [];
@@ -71,6 +74,7 @@ const deleteAllRecords = () => {
     if (toDoList.toDo.length === 0) {
         document.querySelector(".content-status").innerHTML = "<h2 class=\"no-content\">No Content Here</h2>";
         document.querySelector(".all_options").innerHTML = "";
+        cancelAction();
     }
 };
 
@@ -82,7 +86,6 @@ const yourJobNow = () => {
     document.querySelector(".container").style.zIndex = "-1";
 
     const random_number = Math.floor(Math.random() * (toDoList.toDo.length));
-
     document.querySelector('#current_task_is').innerHTML = toDoList.toDo[random_number];
 };
 
@@ -107,7 +110,7 @@ const load_Content_Of_To_Do_List = () => {
         );
 
         options.innerHTML = toDoList.toDo.map((option, index) => {
-            return ('<li id="idIs' + (index) + '">' + (index + 1) + ". " + option + '<span><i onclick="edit_single_item(' + index + ')" class="material-icons edit-icon">edit</i><i onclick="delete_single_item(' + index + ')" class="material-icons delete-icon">delete</i></span>' + '</li>');
+            return ('<li id="idIs' + (index) + '">' + (index + 1) + ". " + option + '<span><i onclick="getSingleDataToEdit(' + index + ')" class="material-icons edit-icon">edit</i><i onclick="getSingleDataToDelete(' + index + ')" class="material-icons delete-icon">delete</i></span>' + '</li>');
         }).join(" ");
     } else {
         document.querySelector(".content-status").innerHTML = "<h2 class=\"no-content\">No Content Here</h2>";
@@ -121,7 +124,6 @@ const errorMessage = (msg) => {
     toDoList.errorMsg = msg;
 
     document.querySelector('#error_message').innerHTML = toDoList.errorMsg;
-
     document.querySelector(".error-box").classList.add('show_alert');
 
     let button_value = document.querySelector("#submit_button");
@@ -132,11 +134,19 @@ const errorMessage = (msg) => {
 
 // delete single item
 
-const delete_single_item = (id) => {
-    toDoList.toDo.splice(id, 1);
+const getSingleDataToDelete = (id) => {
+    document.querySelector(".delete-box").style.visibility = "visible";
+    document.querySelector(".container").style.opacity = "0.3";
+    document.querySelector(".container").style.zIndex = "-1";
+    document.querySelector(".delete-item").innerHTML = toDoList.toDo[id];
+    document.querySelector("#update-delete").setAttribute("data_popup", id);
 
-    let json = JSON.stringify(toDoList.toDo);
-    localStorage.setItem('index', json);
+};
+
+const updateDelete = (itemData) => {
+    let id = itemData.getAttribute('data_popup');
+    toDoList.toDo.splice(id, 1);
+    Json_setItem_func();
 
     if (toDoList.toDo.length > 0) {
         load_Content_Of_To_Do_List();
@@ -144,24 +154,47 @@ const delete_single_item = (id) => {
     } else {
         document.querySelector(".content-status").innerHTML = "<h2 class=\"no-content\">No Content Here</h2>";
         document.querySelector(".all_options").innerHTML = "";
-        errorMessage("add data deleted !")
+        errorMessage("all data deleted !")
     }
+    cancelAction();
 };
 
-// edit single item
+// get single item info
 
-const edit_single_item = (id) => {
+const getSingleDataToEdit = (id) => {
+    document.querySelector(".edit-form").style.visibility = "visible";
+    document.querySelector(".container").style.opacity = "0.3";
+    document.querySelector(".container").style.zIndex = "-1";
+    document.querySelector("#edit_input").value = toDoList.toDo[id];
+    document.querySelector("#update").setAttribute("data_popup", id);
+};
 
-    new_data = prompt("Set Change data");
+// update in edit mood
 
+const updateAction = (itemData) => {
+    let id = itemData.getAttribute('data_popup');
+    new_data = document.querySelector(".edit_input").value;
     toDoList.toDo[id] = new_data;
 
-    let json = JSON.stringify(toDoList.toDo);
-    localStorage.setItem('index', json);
-
+    Json_setItem_func();
     load_Content_Of_To_Do_List();
     console.log('Data edited...');
+    cancelAction();
 };
 
+// cancel action
 
+const cancelAction = () => {
+    document.querySelector(".edit-form").style.visibility = "hidden";
+    document.querySelector(".delete-box").style.visibility = "hidden";
+    document.querySelector(".delete-all-box").style.visibility = "hidden";
+    document.querySelector(".container").style.opacity = "1";
+    document.querySelector(".container").style.zIndex = "1";
+};
 
+// json set item function
+
+const Json_setItem_func = () => {
+    let json = JSON.stringify(toDoList.toDo);
+    localStorage.setItem('index', json);
+};
